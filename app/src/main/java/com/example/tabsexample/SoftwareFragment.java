@@ -61,7 +61,7 @@ public class SoftwareFragment extends Fragment {
         }
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         //db.setFirestoreSettings(new FirebaseFirestoreSettings.Builder().setPersistenceEnabled(false).build());
-        Query query = FirebaseFirestore.getInstance().collection("Issues");
+        Query query = FirebaseFirestore.getInstance().collection("BusInvite");
         FirestoreRecyclerOptions<IssueModel> options = new FirestoreRecyclerOptions.Builder<IssueModel>()
                 .setQuery(query, IssueModel.class).build();
         adapter = new FirestoreRecyclerAdapter<IssueModel, IssueViewHolder>(options) {

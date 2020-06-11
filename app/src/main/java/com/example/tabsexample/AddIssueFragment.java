@@ -23,7 +23,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
-import java.util.IntSummaryStatistics;
 import java.util.Map;
 
 
@@ -42,14 +41,15 @@ public class AddIssueFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private Spinner spinner;
-    private EditText editTextTitle, editTextReporter;
+
+    private EditText edittextdate, edittextline, editTexttime;
     private Button btnSend;
     private FirebaseFirestore db;
     private FragmentManager fm;
     private FragmentTransaction ft;
-    private final String TITLE = "title";
-    private final String REPORTER = "reporter";
-    private final String CATEGORY = "category";
+    private final String DATE = "Date";
+    private final String BUSLINE = "line";
+    private final String TIME = "Time";
     public AddIssueFragment() {
         // Required empty public constructor
     }
@@ -85,8 +85,9 @@ public class AddIssueFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         spinner = getView().findViewById(R.id.spinner_category);
-        editTextReporter = getView().findViewById(R.id.editTextReporter);
-        editTextTitle = getView().findViewById(R.id.editTextDescription);
+        edittextline = getView().findViewById(R.id.editTextLine);
+        edittextdate = getView().findViewById(R.id.editTextDate);
+        editTexttime = getView().findViewById(R.id.editTextTime);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.categories, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -97,14 +98,15 @@ public class AddIssueFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 final String category = spinner.getSelectedItem().toString();
-                String title = editTextTitle.getText().toString();
-                String reporter = editTextReporter.getText().toString();
+                String date = edittextdate.getText().toString();
+                String time = editTexttime.getText().toString();
+                 int line= Integer.parseInt(edittextline.getText().toString());
                 //IssueModel issueModel = new IssueModel(reporter,title,category);
                 Map<String, Object> issue = new HashMap<>();
-                issue.put(TITLE, title);
-                issue.put(REPORTER, reporter);
-                issue.put(CATEGORY, category);
-                db.collection("Issues").document().set(issue)
+                issue.put(DATE, date);
+                issue.put(TIME, time);
+                issue.put(BUSLINE, line);
+                db.collection("BusInvite").document().set(issue)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {

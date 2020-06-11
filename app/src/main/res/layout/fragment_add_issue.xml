@@ -12,7 +12,7 @@
         android:id="@+id/textView2"
         android:layout_width="304dp"
         android:layout_height="wrap_content"
-        android:text="Add Issue Form"
+        android:text="Reserve seat "
         android:textAlignment="center"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,30 +31,30 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
-        android:id="@+id/editTextDescription"
+        android:id="@+id/editTextLine"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
         android:layout_weight="1"
         android:ems="10"
-        android:hint="Description"
-        android:inputType=""
+        android:hint="Bus line"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner_category" />
 
     <EditText
-        android:id="@+id/editTextReporter"
+        android:id="@+id/editTextDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
         android:layout_weight="1"
         android:ems="10"
-        android:hint="Reporter"
+        android:hint="Date"
         android:inputType=""
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDescription" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextLine" />
 
     <Button
         android:id="@+id/button_send_issue"
@@ -64,6 +64,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextReporter" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTime" />
+
+    <EditText
+        android:id="@+id/editTextTime"
+        android:layout_width="397dp"
+        android:layout_height="62dp"
+        android:ems="10"
+        android:hint="Time"
+        android:inputType="time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
