@@ -16,16 +16,10 @@ import android.widget.TextView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.firestore.Query;
 
 
 public class SoftwareFragment extends Fragment {
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    private String mParam1;
-    private String mParam2;
 
     private RecyclerView recyclerView;
     private FirebaseFirestore firebaseFirestore;
@@ -36,11 +30,9 @@ public class SoftwareFragment extends Fragment {
 
     FirestoreRecyclerAdapter adapter;
 
-    public static SoftwareFragment newInstance(String param1, String param2) {
+    public static SoftwareFragment newInstance() {
         SoftwareFragment fragment = new SoftwareFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -55,28 +47,26 @@ public class SoftwareFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         recyclerView = getView().findViewById(R.id.list_software);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         //db.setFirestoreSettings(new FirebaseFirestoreSettings.Builder().setPersistenceEnabled(false).build());
         Query query = FirebaseFirestore.getInstance().collection("BusInvite");
-        FirestoreRecyclerOptions<IssueModel> options = new FirestoreRecyclerOptions.Builder<IssueModel>()
-                .setQuery(query, IssueModel.class).build();
-        adapter = new FirestoreRecyclerAdapter<IssueModel, IssueViewHolder>(options) {
+        FirestoreRecyclerOptions<RequestModel> options = new FirestoreRecyclerOptions.Builder<RequestModel>()
+                .setQuery(query, RequestModel.class).build();
+        adapter = new FirestoreRecyclerAdapter<RequestModel, RequestViewHolder>(options) {
 
             @NonNull
             @Override
-            public IssueViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_issue,parent,false);
-                return new IssueViewHolder(view);
+            public RequestViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_request,parent,false);
+                return new RequestViewHolder(view);
             }
 
             @Override
-            protected void onBindViewHolder(@NonNull IssueViewHolder holder, int position, @NonNull IssueModel model) {
-                holder.list_reporter.setText(model.getReporter());
-                holder.list_title.setText(model.getTitle());
+            protected void onBindViewHolder(@NonNull RequestViewHolder holder, int position, @NonNull RequestModel model) {
+                holder.list_date.setText(""+model.getDate());
+                holder.list_time.setText(""+model.getTime());
+                holder.list_line.setText(""+ model.getLine());
+
             }
 
         };
@@ -86,14 +76,15 @@ public class SoftwareFragment extends Fragment {
         recyclerView.setAdapter(adapter);
     }
 
-    private class IssueViewHolder extends RecyclerView.ViewHolder {
-        private TextView list_title;
-        private TextView list_reporter;
-
-        public IssueViewHolder(@NonNull View itemView) {
+    private class RequestViewHolder extends RecyclerView.ViewHolder {
+        private TextView list_line;
+        private TextView list_time;
+        private TextView list_date;
+        public RequestViewHolder(@NonNull View itemView) {
             super(itemView);
-            list_title = itemView.findViewById(R.id.tv_title);
-            list_reporter = itemView.findViewById(R.id.tv_reporter);
+            list_line = itemView.findViewById(R.id.tv_line);
+            list_time = itemView.findViewById(R.id.tv_time);
+            list_date = itemView.findViewById(R.id.tv_date);
         }
 
     }

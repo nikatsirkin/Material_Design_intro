@@ -12,10 +12,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
+
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -26,78 +25,47 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AddIssueFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class AddIssueFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-    private Spinner spinner;
+public class AddIssueFragment extends Fragment {
 
     private EditText edittextdate, edittextline, editTexttime;
     private Button btnSend;
     private FirebaseFirestore db;
     private FragmentManager fm;
     private FragmentTransaction ft;
-    private final String DATE = "Date";
+    private final String DATE = "date";
     private final String BUSLINE = "line";
-    private final String TIME = "Time";
+    private final String TIME = "time";
     public AddIssueFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AddIssueFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static AddIssueFragment newInstance(String param1, String param2) {
         AddIssueFragment fragment = new AddIssueFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        spinner = getView().findViewById(R.id.spinner_category);
+
         edittextline = getView().findViewById(R.id.editTextLine);
         edittextdate = getView().findViewById(R.id.editTextDate);
         editTexttime = getView().findViewById(R.id.editTextTime);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
-                R.array.categories, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+
         db = FirebaseFirestore.getInstance();
         btnSend = getView().findViewById(R.id.button_send_issue);
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String category = spinner.getSelectedItem().toString();
+                final String category = "Software";
                 String date = edittextdate.getText().toString();
                 String time = editTexttime.getText().toString();
                  int line= Integer.parseInt(edittextline.getText().toString());

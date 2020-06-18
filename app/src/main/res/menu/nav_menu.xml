@@ -10,8 +10,8 @@
                 android:icon="@drawable/ic_settings_24px"></item>
             <item
                 android:id="@+id/nav_software"
-                android:title="Software"
-                android:icon="@drawable/ic_computer_black_24dp"></item>
+                android:icon="@android:drawable/stat_notify_chat"
+                android:title="Ride requests"></item>
             <item
                 android:id="@+id/nav_lecturer"
                 android:title="Lecturer"
