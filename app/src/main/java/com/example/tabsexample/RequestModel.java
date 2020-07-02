@@ -1,8 +1,10 @@
 package com.example.tabsexample;
 
+import java.util.Calendar;
+
 public class RequestModel {
     private int line;
-    private String date, time;
+    private String date;
 
     public RequestModel() {
     }
@@ -11,29 +13,16 @@ public class RequestModel {
         return line;
     }
 
-    public void setLine(int line) {
-        this.line = line;
-    }
-
     public String getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setCalendar(String date) {
         this.date = date;
     }
 
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    public RequestModel(int line, String date, String time) {
+    public RequestModel(int line, String date) {
         this.line = line;
         this.date = date;
-        this.time = time;
     }
 }
