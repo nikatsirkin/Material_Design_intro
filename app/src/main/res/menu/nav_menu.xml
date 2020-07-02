@@ -6,8 +6,8 @@
         <menu>
             <item
                 android:id="@+id/nav_hardware"
-                android:title="Hardware"
-                android:icon="@drawable/ic_settings_24px"></item>
+                android:icon="@drawable/ic_statistics"
+                android:title="stats"></item>
             <item
                 android:id="@+id/nav_software"
                 android:icon="@android:drawable/stat_notify_chat"
