@@ -64,7 +64,7 @@ public class SoftwareFragment extends Fragment {
             @Override
             protected void onBindViewHolder(@NonNull RequestViewHolder holder, int position, @NonNull RequestModel model) {
                 holder.list_date.setText(""+model.getDate());
-                holder.list_time.setText(""+model.getDate());
+                holder.list_time.setText(""+model.getTime());
                 holder.list_line.setText(""+ model.getLine());
 
             }
