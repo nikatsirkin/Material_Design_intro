@@ -12,4 +12,5 @@
         <item>Hardware</item>
         <item>Lecturers</item>
     </string-array>
+    <string name="mapbox_access_token">pk.eyJ1IjoibmlrYXRzaXJraW4iLCJhIjoiY2tjZjFpdjJrMGF6eDJ0cDA5Y216bWxlNCJ9.njkA67Jc9JEv_kEDFsc7hA</string>
 </resources>

@@ -72,7 +72,12 @@ public class DrawerActivity extends AppCompatActivity {
                         ft.commit();
                         break;
                     case R.id.nav_lecturer:
-                        Toast.makeText(DrawerActivity.this, "lecturer", Toast.LENGTH_LONG).show();
+                        fm = getSupportFragmentManager();
+                        MapFragment mf = new MapFragment();
+                        ft = fm.beginTransaction();
+                        ft.replace(R.id.frag_container, mf);
+                        ft.addToBackStack(null);
+                        ft.commit();
                         break;
                 }
                 return false;

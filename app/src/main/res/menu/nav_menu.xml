@@ -14,8 +14,8 @@
                 android:title="Ride requests"></item>
             <item
                 android:id="@+id/nav_lecturer"
-                android:title="Lecturer"
-                android:icon="@drawable/ic_account_circle_black_24dp"></item>
+                android:title="Map"></item>
+<!--                android:icon="@drawable/ic_map"></item>-->
         </menu>
     </item>
 </menu>
